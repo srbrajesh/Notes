@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Hello</h1>
+        <ol>
+            {% for note in all_notes %}
+                <li>{{note.content}}
+                    <form action="{% url 'deleteNote' note.id %}" style="display: inline;" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </li>
+            {% endfor %}
+        </ol>
+        <form action="{% url 'addNote' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="content"/>
+            <input type="submit" value="Add"/>
+        </form>
+    </body>
+</html>
